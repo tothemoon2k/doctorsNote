@@ -13,7 +13,8 @@
     let now = new Date(), month, day, year;
 
     let value = '<div style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);" data-mce-style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"><h1 style="font-size: 18pt; text-align: center; margin-bottom: 20px;" data-mce-style="font-size: 18pt; text-align: center; margin-bottom: 20px;">Medical Certificate</h1><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">To whom it may concern,</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">This is to certify that my patient, undefined, has been diagnosed with a fever that has manifested in multiple symptoms requiring extensive rest and recovery. The symptoms include sweating, chills, shivering, recurring headaches, muscle aches, loss of appetite, increased irritability, dehydration, and generalized weakness.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">The nature of this condition necessitates an absence from daily responsibilities for undefined days beginning from undefined, to ensure optimal recovery in the shortest possible timeframe.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">I trust you understand the seriousness of this health condition and grant undefined the necessary time off to rest, recover and return to their responsibilities in good health. Thank you for your understanding and cooperation in this matter.</p><p class="signature" style="text-align: right; margin-top: 40px;" data-mce-style="text-align: right; margin-top: 40px;"><span style="font-family: Cedarville Cursive; font-size: 24pt;" data-mce-style="font-family: Cedarville Cursive; font-size: 24pt;"> Dr. Emily Patel </span></p><p style="margin-bottom: 10px; margin-top: 10px;" data-mce-style="margin-bottom: 10px; margin-top: 10px;">Dr. Emily Patel</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Internal Medicine Specialist</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Evergreen Medical Associates</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">789 Oak Avenue</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">San Francisco, CA 94102</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Phone: (415) 555-6789</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Email: dr.patelm@example.com</p></div>';
-
+ 
+    let doc = `<div style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);" data-mce-style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"><h1 style="font-size: 18pt; text-align: center; margin-bottom: 20px;" data-mce-style="font-size: 18pt; text-align: center; margin-bottom: 20px;">Medical Certificate</h1><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">To whom it may concern,</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">This is to certify that my patient, undefined, has been diagnosed with a fever that has manifested in multiple symptoms requiring extensive rest and recovery. The symptoms include sweating, chills, shivering, recurring headaches, muscle aches, loss of appetite, increased irritability, dehydration, and generalized weakness.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">The nature of this condition necessitates an absence from daily responsibilities for undefined days beginning from undefined, to ensure optimal recovery in the shortest possible timeframe.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">I trust you understand the seriousness of this health condition and grant undefined the necessary time off to rest, recover and return to their responsibilities in good health. Thank you for your understanding and cooperation in this matter.</p><p class="signature" style="text-align: right; margin-top: 40px;" data-mce-style="text-align: right; margin-top: 40px;"><span style="font-family: Cedarville Cursive; font-size: 24pt;" data-mce-style="font-family: Cedarville Cursive; font-size: 24pt;"> Dr. Emily Patel </span></p><p style="margin-bottom: 10px; margin-top: 10px;" data-mce-style="margin-bottom: 10px; margin-top: 10px;">Dr. Emily Patel</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Internal Medicine Specialist</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Evergreen Medical Associates</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">789 Oak Avenue</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">San Francisco, CA 94102</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Phone: (415) 555-6789</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Email: dr.patelm@example.com</p></div>`
 
     let text;
     let conf = {
@@ -25,7 +26,7 @@
         
     }
     
-    let stage = 1;
+    let stage = 3;
 
     const openai = new OpenAI({
     apiKey: "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",
@@ -160,19 +161,36 @@
     let  a4 = [595.28, 841.89];
 
     const download = async () => {
-        const div = document.createElement('div');
+    const div = document.createElement('div');
+    div.innerHTML = value;
+    document.body.appendChild(div);
+    
+    // Define a fixed width (e.g., the width of a standard laptop)
+    const fixedWidth = 1366;
+    // Calculate scale ratio according to this fixed width
+    const scaleRatio = fixedWidth / div.offsetWidth;
+    
+    html2canvas(div, {scale: scaleRatio}).then(canvas => {
+        var imgData = canvas.toDataURL('image/png');
+        var imgAspectRatio = canvas.width / canvas.height;
+        var doc = new jsPDF('p', 'mm', [210, 297]);  // A4 size page
+        var docWidth = doc.internal.pageSize.getWidth();
+        var docHeight = doc.internal.pageSize.getHeight();
+        var docAspectRatio = docWidth / docHeight;
 
-        div.innerHTML = value;
-        document.body.appendChild(div);
-
-        html2canvas(div, {scale: 2}).then(canvas => {
-            var imgData = canvas.toDataURL('image/png');
-            var doc = new jsPDF('p', 'mm', [297, 210]); // A4 size page in portrait mode
-            var width = doc.internal.pageSize.getWidth();
-            var height = (canvas.height * width) / canvas.width;
-            doc.addImage(imgData, 'PNG', 0, 0, width, height);
-            doc.save('doctorsNote.pdf');
-        });
+        var width, height;
+        // calculate dimensions maintaining aspect ratio
+        if (imgAspectRatio > docAspectRatio) {
+            width = docWidth;
+            height = width / imgAspectRatio;
+        } else {
+            height = docHeight;
+            width = height * imgAspectRatio;
+        }
+    
+        doc.addImage(imgData, 'PNG', 0, 0, width, height); 
+        doc.save('doctorsNote.pdf');
+    });
 }
 	
     
@@ -184,46 +202,46 @@
 </script>
 
 {#if stage == 1}
-    <div class="bg-gradient-to-bl from-indigo-900 via-indigo-400 to-indigo-900 w-screen h-screen flex flex-col justify-center items-center">
+    <div class="bg-gradient-to-bl from-indigo-900 via-indigo-400 to-indigo-900 w-screen h-screen flex flex-col justify-center items-center overflow-hidden">
 
-        <h1 class="px-6 mb-16 text-4xl font-extrabold md:text-center text-gray-900 md:mb-28 md:px-20 md:text-5xl lg:text-6xl dark:text-white">Generate a fake doctors note <span class="text-black dark:text-black">in seconds</span> for FREE</h1>
+        <h1 class="px-6 text-3xl mb-4 font-extrabold md:text-center text-gray-900 md:mb-28 md:px-20 md:text-5xl lg:text-6xl dark:text-white">Generate a fake doctors note <span class="text-black dark:text-black">in seconds</span> for FREE</h1>
 
         <form class="w-full max-w-lg px-6">
-            <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                First Name
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" bind:value={firstName}>
-            </div>
-            <div class="w-full md:w-1/2 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                Last Name
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe" bind:value={lastName}>
-            </div>
+            <div class="flex flex-wrap -mx-3 mb-5">
+                <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                    First Name
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2.5 md:py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" bind:value={firstName}>
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                    Last Name
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2.5 md:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe" bind:value={lastName}>
+                </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                 Start Date
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="date" bind:value={startDate}>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2.5 md:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="date" bind:value={startDate}>
             </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-2">
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-1/3 px-3 mb-5 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                 Amount of Days Off
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="4" bind:value={daysOff}>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2.5 md:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="4" bind:value={daysOff}>
             </div>
             <div class="w-full md:w-2/3 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 Excuse
                 </label>
                 <div class="relative">
-                <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" bind:value={excuse}>
+                <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 md:py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" bind:value={excuse}>
                     <option value="Fever" selected>Random</option>
                     <option value="Flu">Flu</option>
                     <option value="Fever">Fever</option>
@@ -242,7 +260,7 @@
             
         </form>
 
-        <button on:click={next} class="mt-5 md:mt-20 relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-md shadow-2xl group">
+        <button on:click={next} class="mb-2 md:mt-20 relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-md shadow-2xl group">
             <span class="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-0 bg-gradient-to-br from-pink-600 via-purple-700 to-blue-400 group-hover:opacity-100"></span>
             <!-- Top glass gradient -->
             <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>

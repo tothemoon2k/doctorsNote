@@ -26,7 +26,7 @@
         
     }
     
-    let stage = 3;
+    let stage = 1;
 
     const openai = new OpenAI({
     apiKey: "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",

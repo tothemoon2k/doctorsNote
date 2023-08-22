@@ -4,6 +4,9 @@
     import Editor from '@tinymce/tinymce-svelte';
     import html2canvas from 'html2canvas';
     import jsPDF from 'jspdf';
+    import { setDoc, doc, addDoc, collection } from 'firebase/firestore';
+    import {db} from '$lib/Firebase/firebase';
+    import { serverTimestamp } from 'firebase/firestore';
 
     let startDate;
     let firstName;
@@ -12,9 +15,40 @@
     let excuse;
     let now = new Date(), month, day, year;
 
+    var startTime; // to keep track of the start time
+    var stopwatchInterval; // to keep track of the interval
+    var elapsedPausedTime = 0; // to keep track of the elapsed time while stopped
+
+    function startStopwatch() {
+        if (!stopwatchInterval) {
+            startTime = new Date().getTime() - elapsedPausedTime; // get the starting time by subtracting the elapsed paused time from the current time
+            stopwatchInterval = setInterval(updateStopwatch, 1000); // update every second
+        }
+    }
+
+    function updateStopwatch() {
+        var currentTime = new Date().getTime(); // get current time in milliseconds
+        var elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
+        var seconds = Math.floor(elapsedTime / 1000) % 60; // calculate seconds
+        var minutes = Math.floor(elapsedTime / 1000 / 60) % 60; // calculate minutes
+        var hours = Math.floor(elapsedTime / 1000 / 60 / 60); // calculate hours
+        var displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
+    }
+
+    function stopStopwatch() {
+        clearInterval(stopwatchInterval); // stop the interval
+        elapsedPausedTime = new Date().getTime() - startTime; // calculate elapsed paused time
+        stopwatchInterval = null; // reset the interval variable
+    }
+
+    function pad(number) {
+        // add a leading zero if the number is less than 10
+        return (number < 10 ? "0" : "") + number;
+    }
+
     let value = '<div style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);" data-mce-style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"><h1 style="font-size: 18pt; text-align: center; margin-bottom: 20px;" data-mce-style="font-size: 18pt; text-align: center; margin-bottom: 20px;">Medical Certificate</h1><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">To whom it may concern,</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">This is to certify that my patient, undefined, has been diagnosed with a fever that has manifested in multiple symptoms requiring extensive rest and recovery. The symptoms include sweating, chills, shivering, recurring headaches, muscle aches, loss of appetite, increased irritability, dehydration, and generalized weakness.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">The nature of this condition necessitates an absence from daily responsibilities for undefined days beginning from undefined, to ensure optimal recovery in the shortest possible timeframe.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">I trust you understand the seriousness of this health condition and grant undefined the necessary time off to rest, recover and return to their responsibilities in good health. Thank you for your understanding and cooperation in this matter.</p><p class="signature" style="text-align: right; margin-top: 40px;" data-mce-style="text-align: right; margin-top: 40px;"><span style="font-family: Cedarville Cursive; font-size: 24pt;" data-mce-style="font-family: Cedarville Cursive; font-size: 24pt;"> Dr. Emily Patel </span></p><p style="margin-bottom: 10px; margin-top: 10px;" data-mce-style="margin-bottom: 10px; margin-top: 10px;">Dr. Emily Patel</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Internal Medicine Specialist</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Evergreen Medical Associates</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">789 Oak Avenue</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">San Francisco, CA 94102</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Phone: (415) 555-6789</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Email: dr.patelm@example.com</p></div>';
  
-    let doc = `<div style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);" data-mce-style="font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"><h1 style="font-size: 18pt; text-align: center; margin-bottom: 20px;" data-mce-style="font-size: 18pt; text-align: center; margin-bottom: 20px;">Medical Certificate</h1><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">To whom it may concern,</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">This is to certify that my patient, undefined, has been diagnosed with a fever that has manifested in multiple symptoms requiring extensive rest and recovery. The symptoms include sweating, chills, shivering, recurring headaches, muscle aches, loss of appetite, increased irritability, dehydration, and generalized weakness.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">The nature of this condition necessitates an absence from daily responsibilities for undefined days beginning from undefined, to ensure optimal recovery in the shortest possible timeframe.</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">I trust you understand the seriousness of this health condition and grant undefined the necessary time off to rest, recover and return to their responsibilities in good health. Thank you for your understanding and cooperation in this matter.</p><p class="signature" style="text-align: right; margin-top: 40px;" data-mce-style="text-align: right; margin-top: 40px;"><span style="font-family: Cedarville Cursive; font-size: 24pt;" data-mce-style="font-family: Cedarville Cursive; font-size: 24pt;"> Dr. Emily Patel </span></p><p style="margin-bottom: 10px; margin-top: 10px;" data-mce-style="margin-bottom: 10px; margin-top: 10px;">Dr. Emily Patel</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Internal Medicine Specialist</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Evergreen Medical Associates</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">789 Oak Avenue</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">San Francisco, CA 94102</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Phone: (415) 555-6789</p><p style="margin-bottom: 10px;" data-mce-style="margin-bottom: 10px;">Email: dr.patelm@example.com</p></div>`
+    
 
     let text;
     let conf = {
@@ -43,81 +77,45 @@
         Date: August 21, 2023`
 
     const generate = async () => {
-        console.log("starting")
-
+        startStopwatch();
+        let prompt = `You are the doctor below and the current date is Date: ${startDate} please write a note for ${firstName} ${lastName}, a patient who needs to take time off for a fever. The patient has been experiencing related syntoms such as Sweating.                 Chills and shivering.                 Headache.                 Muscle aches.                 Loss of appetite.                 Irritability.                 Dehydration.                 General weakness.                                 and requires ${daysOff} days off starting from ${startDate} for rest and recovery. Please write a detailed(20 Sentences) professional doctor's note, explaining the nature of the illness and the recommended time off. Please provide a very big signature in the font "Cedarville Cursive". Please only use "Cedarville Cursive" for the signature.                                  Doctor: Dr. Emily Patel                                 Internal Medicine Specialist                                 Evergreen Medical Associates                                 789 Oak Avenue                                 San Francisco, CA 94102                                 Phone: (415) 555-6789                                 Email: dr.patelm@example.com                  Please format in html, generate div tag, no body or html tag. Please turn the following css into inline styling and add it to the relevant elements:  """css .legal-document { font-family: Times New Roman, sans-serif; font-size: 12pt; line-height: 1.5; margin: 20px auto; max-width: 800px; padding: 40px; background-color: #f9f9f9; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }  .legal-document h1 { font-size: 18pt; text-align: center; margin-bottom: 20px; }  .legal-document p { margin-bottom: 10px; }  .legal-document ul { list-style-type: disc; margin-left: 20px; }  .legal-document ol { list-style-type: decimal; margin-left: 20px; }  .legal-document .section-heading { font-weight: bold; margin-top: 20p x; margin-bottom: 10px; }  .legal-document .signature { text-align: right; margin-top: 40px; }  """"`
         const completion = await openai.chat.completions.create({
-            messages: [{ role: 'user', content: `You are the doctor below and the current date is Date: ${startDate} please write a note for ${firstName} ${lastName}, a patient who needs to take time off for a fever. The patient has been experiencing related syntoms such as Sweating.
-                Chills and shivering.
-                Headache.
-                Muscle aches.
-                Loss of appetite.
-                Irritability.
-                Dehydration.
-                General weakness.
-                                and requires ${daysOff} days off starting from ${startDate} for rest and recovery. Please write a detailed(20 Sentences) professional doctor's note, explaining the nature of the illness and the recommended time off. Please provide a very big signature in the font "Cedarville Cursive". Please only use "Cedarville Cursive" for the signature.
-
-                                Doctor: Dr. Emily Patel
-                                Internal Medicine Specialist
-                                Evergreen Medical Associates
-                                789 Oak Avenue
-                                San Francisco, CA 94102
-                                Phone: (415) 555-6789
-                                Email: dr.patelm@example.com
-
-
-                Please format in html, generate div tag, no body or html tag. Please turn the following css into inline styling and add it to the relevant elements:
-
-                """css
-                .legal-document {
-                font-family: Times New Roman, sans-serif;
-                font-size: 12pt;
-                line-height: 1.5;
-                margin: 20px auto;
-                max-width: 800px;
-                padding: 40px;
-                background-color: #f9f9f9;
-                border: 1px solid #ccc;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-
-                .legal-document h1 {
-                font-size: 18pt;
-                text-align: center;
-                margin-bottom: 20px;
-                }
-
-                .legal-document p {
-                margin-bottom: 10px;
-                }
-
-                .legal-document ul {
-                list-style-type: disc;
-                margin-left: 20px;
-                }
-
-                .legal-document ol {
-                list-style-type: decimal;
-                margin-left: 20px;
-                }
-
-                .legal-document .section-heading {
-                font-weight: bold;
-                margin-top: 20p
-                x;
-                margin-bottom: 10px;
-                }
-
-                .legal-document .signature {
-                text-align: right;
-                margin-top: 40px;
-                }""""
-                ` }],
+            messages: [{ role: 'user', content: prompt}],
             model: 'gpt-4',
         });
 
         value = completion.choices[0].message.content;
-
         stage = 3;
+
+        stopStopwatch();
+        var currentTime = new Date().getTime(); // get current time in milliseconds
+        var elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
+        var seconds = Math.floor(elapsedTime / 1000) % 60; // calculate seconds
+        var minutes = Math.floor(elapsedTime / 1000 / 60) % 60; // calculate minutes
+        var hours = Math.floor(elapsedTime / 1000 / 60 / 60); // calculate hours
+        var displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+
+        const data = {
+            prompt: prompt,
+            result: value,
+            timestamp: serverTimestamp(),
+            loadTime: displayTime,
+            firstName: firstName,
+            lastName: lastName,
+            daysOff: daysOff,
+            excuse: excuse,
+            startDate: startDate,
+        }
+        
+        const dbRef = collection(db, "events");
+        addDoc(dbRef, data)
+            .then(docRef => {
+                console.log("Document has been added successfully");
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        
     }
 
     let dots = '.';

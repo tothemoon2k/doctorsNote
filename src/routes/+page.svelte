@@ -131,6 +131,14 @@
     }
 
     onMount(() => {
+        window._mfq = window._mfq || [];
+			(function() {
+			  var mf = document.createElement("script");
+			  mf.type = "text/javascript"; mf.defer = true;
+			  mf.src = "//cdn.mouseflow.com/projects/73b9d7b7-cbb3-4754-a949-c62de86a5274.js";
+			  document.getElementsByTagName("head")[0].appendChild(mf);
+			})();
+
         interval = setInterval(updateDots, 500);
         
         month = '' + (now.getMonth() + 1),

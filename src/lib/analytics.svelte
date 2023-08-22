@@ -27,15 +27,14 @@
       gtag('config', 'G-0LEVZJRG89')
     </script>
 
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:3622342,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    <script type="text/javascript">
+        window._mfq = window._mfq || [];
+        (function() {
+        var mf = document.createElement("script");
+        mf.type = "text/javascript"; mf.defer = true;
+        mf.src = "//cdn.mouseflow.com/projects/d82822ad-d5f1-4072-afad-48f94cad1f7c.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+        })();
     </script>
   </svelte:head>
   

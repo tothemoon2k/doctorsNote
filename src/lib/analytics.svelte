@@ -36,11 +36,5 @@
         document.getElementsByTagName("head")[0].appendChild(mf);
         })();
     </script>
-
-    <style>
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-    </style>
   </svelte:head>
   

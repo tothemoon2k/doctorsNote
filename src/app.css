@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: SF Pro;
+  src: url("$lib/fonts/SF-Pro-Text-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SF Pro_Bold;
+  src: url("$lib/fonts/SF-Pro-Text-Black.otf") format("opentype");
+}
+

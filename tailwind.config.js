@@ -1,7 +1,14 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        primary: "SF Pro",
+        primaryBold: "SF Pro_Bold",
+      }
+    }
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/forms')
+  ]
 };

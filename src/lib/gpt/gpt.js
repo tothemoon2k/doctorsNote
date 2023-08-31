@@ -12,7 +12,7 @@ const openai = new OpenAI({
         789 Oak Avenue
         San Francisco, CA 94102
         Phone: (415) 555-6789
-        Email: dr.patelm@example.com
+        Email: dr.patel@evergreenmedical.com
         Date: August 21, 2023`
 
     export const generate = async (startDate, fullName, amountOfDays) => {

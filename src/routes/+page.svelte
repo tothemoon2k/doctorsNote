@@ -6,7 +6,7 @@
     import { serverTimestamp } from 'firebase/firestore';
     import {db} from '$lib/Firebase/firebase';
 
-    let step = 1;
+    let step = 2;
 
 
     let next = () => {
@@ -165,7 +165,7 @@
 
                 <div class="flex items-center gap-2 mb-6">
                     <input type="checkbox" class="rounded-full" id="hs-default-checkbox" bind:checked={agreements}>
-                    <label for="hs-default-checkbox" class="text-sm  text-black">I have read and accept the Terms and Conditions, Disclaimer and Acceptable Use Policy</label>
+                    <label for="hs-default-checkbox" class="text-sm  text-black">I have read and accept the <a href="/terms" class="text-blue-600">Terms and Conditions</a>, <a href="/disclaimer" class="text-blue-600">Disclaimer</a> and <a href="/aup" class="text-blue-600">Acceptable Use Policy</a></label>
                   </div>
                 <button class="bg-black text-white transform p-4 rounded-xl self-end font-semibold" on:click={create}>Create</button>
                 

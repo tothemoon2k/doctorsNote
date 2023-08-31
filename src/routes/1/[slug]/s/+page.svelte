@@ -1,9 +1,8 @@
 <script>
-    import abms from "$lib/images/abms.png";
     import { db } from "../../../../lib/Firebase/firebase.js";
     import { getDoc, doc } from 'firebase/firestore';
     import Editor from '@tinymce/tinymce-svelte';
-    import {PUBLIC_GPT_KEY, PUBLIC_TINY_KEY} from '$env/static/public';
+    import {PUBLIC_TINY_KEY} from '$env/static/public';
     import Test2 from '$lib/images/test2.png';
     export let data;
 

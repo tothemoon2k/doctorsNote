@@ -1,9 +1,6 @@
 <script>
-    import abms from "$lib/images/abms.png";
     import { db } from "../../../lib/Firebase/firebase.js";
     import { getDoc, doc } from 'firebase/firestore';
-    import html2canvas from 'html2canvas';
-    import { scale } from 'svelte/transition';
     import Test2 from '$lib/images/test2.png';
     export let data;
     

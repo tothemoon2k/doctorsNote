@@ -6,7 +6,7 @@
     import { serverTimestamp } from 'firebase/firestore';
     import {db} from '$lib/Firebase/firebase';
 
-    let step = 2;
+    let step = 1;
 
 
     let next = () => {

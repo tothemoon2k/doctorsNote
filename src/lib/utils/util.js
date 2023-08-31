@@ -1,2 +1,0 @@
-GPT_API_KEY=""
-TINY_API_KEY=""

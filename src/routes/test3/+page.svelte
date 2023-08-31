@@ -10,7 +10,11 @@
 
 
     let next = () => {
-        step++;
+        if(fullName && amountOfDays){
+            step++;
+        } else{
+            alert('Please fill out all the fields')
+        }
     }
 
     let fullName;
@@ -36,8 +40,11 @@
         }).catch((err)=>{
             console.log(err)
         })
-    }
+    }   
 
+    let now = new Date();
+    
+    $: startDate = new Date(now.getTime() - (now.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
 </script>
 
 
@@ -49,8 +56,8 @@
             <div class="flex flex-col mt-20 h md:mt-0 w-5/6 md:w-1/2 h-full">
                 
                     <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-                    <div class="mt-20 relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        Cool Announcment <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+                    <div class="mt-20 relative rounded-full px-3 py-1 text-sm leading-6 text-white ring-1 ring-gray-300 hover:ring-gray-900/20">
+                        New Terms and Conditions <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
                     </div>
                     </div>
                     
@@ -143,23 +150,23 @@
         <div class="w-full h-full flex items-center justify-center content-center flex-col">
             <img src={Test2} class="absolute w-full h-full -z-10 rounded-b-2xl opacity-80" alt="">
             <ol class="ol md:mb-24 md:w-1/2 text-sm font-medium text-center text-black sm:text-base mx-auto flex mb-10">
-                <li class="flex md:w-full items-center text-blue-600 dark:text-blue-500 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+                <li class="flex md:w-full items-center text-green-600 dark:text-green-500 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
                     <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
                         <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                         </svg>
-                        Personal <span class="hidden sm:inline-flex sm:ml-2">Info</span>
+                        Basic <span class="hidden sm:inline-flex sm:ml-2">Info</span>
                     </span>
                 </li>
                 <li class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-                    <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+                    <span class="text-white flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
                         <span class="mr-2">2</span>
-                        Account <span class="hidden sm:inline-flex sm:ml-2">Info</span>
+                        <span class="hidden sm:inline-flex sm:ml-2">Details</span>
                     </span>
                 </li>
                 <li class="flex items-center">
                     <span class="mr-2">3</span>
-                    Confirmation
+                    Done
                 </li>
             </ol>
             <h1 class="text-center mb-6 md:mb-16 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Create Your Doctors Note</h1>

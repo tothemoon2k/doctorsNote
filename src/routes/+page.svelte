@@ -6,7 +6,7 @@
     import { serverTimestamp } from 'firebase/firestore';
     import {db} from '$lib/Firebase/firebase';
 
-    let step = 1;
+    let step = 2;
 
 
     let next = () => {
@@ -22,29 +22,37 @@
     let startDate;
     let reason;
     let additionalDetails;
+    let agreements = false;
 
     let create = async () => {
-        console.log('started')
-        step++;
+        if(agreements){
+            step++;
+            addDoc(collection(db, "notes"), {
+                fullName: fullName,
+                amountOfDays: amountOfDays || 1,
+                startDate: startDate || "no start date",
+                reason: reason || "no reason",
+                additionalDetails: additionalDetails || "no additional details",
+                createdAt: serverTimestamp(),
+                note: await generate(startDate, fullName, amountOfDays)
+            }).then((docRef)=>{
+                window.location.href = `/1/${docRef.id}`
+            }).catch((err)=>{
+                console.log(err)
+            })
 
-        addDoc(collection(db, "notes"), {
-            fullName: fullName,
-            amountOfDays: amountOfDays || 1,
-            startDate: startDate || "no start date",
-            reason: reason || "no reason",
-            additionalDetails: additionalDetails || "no additional details",
-            createdAt: serverTimestamp(),
-            note: await generate(startDate, fullName, amountOfDays)
-        }).then((docRef)=>{
-            window.location.href = `/1/${docRef.id}`
-        }).catch((err)=>{
-            console.log(err)
-        })
+        }else{
+            alert('Please agree to the terms and conditions')
+            return;
+        }
+        
     }   
 
     let now = new Date();
     
     $: startDate = new Date(now.getTime() - (now.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
+
+    
 </script>
 
 
@@ -197,14 +205,17 @@
                     </div>
                 </div>
 
-                <div class="mb-10">
+                <div class="mb-6">
                     <label for="additionalDetails" class="block text-sm font-medium leading-6 text-gray-900">Additional Details (Optional)</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
                         <input type="text" name="additionalDetails" id="additionalDetails" class="block w-full rounded-md border-0 pt-3 pb-16 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" placeholder="My dog died" bind:value={additionalDetails}>
                     </div>
                 </div>
 
-               
+                <div class="flex items-center gap-2 mb-6">
+                    <input type="checkbox" class="rounded-full" id="hs-default-checkbox" bind:checked={agreements}>
+                    <label for="hs-default-checkbox" class="text-sm  text-black">I have read and accept the Terms and Conditions, Disclaimer and Acceptable Use Policy</label>
+                  </div>
                 <button class="bg-black text-white transform p-4 rounded-xl self-end font-semibold" on:click={create}>Create</button>
                 
             </div>

@@ -17,7 +17,7 @@ const openai = new OpenAI({
         789 Oak Avenue
         San Francisco, CA 94102
         Phone: (304) 967-2601
-        Email: dr.patel@evergreenmedical.com`
+        Email: dr.patel@evergreenmedical.org`
 
         let prompt = `You are the doctor below and the current date is Date: ${startDate} please write a note for ${fullName}, a patient who needs to take time off for a fever. The patient has been experiencing symptoms such as Sweating.                 Chills and shivering.                 Headache.                 Muscle aches.                 Loss of appetite.                 Irritability.                 Dehydration.                 General weakness.                                 and requires ${amountOfDays} days off starting from ${startDate} for rest and recovery. Please write a typical doctor's note, briefly explaining the nature of the illness and the recommended time off. Please provide a large signature in the font "Cedarville Cursive". Please only use the font "Cedarville Cursive" for the signature.
 

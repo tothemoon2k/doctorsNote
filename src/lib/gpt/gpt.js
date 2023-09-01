@@ -15,7 +15,7 @@ const openai = new OpenAI({
         Email: dr.patel@evergreenmedical.com
         Date: August 21, 2023`
 
-    export const generate = async (startDate, fullName, amountOfDays) => {
+    export const generate = async (startDate, fullName, amountOfDays, gptModel) => {
 
         let prompt = `You are the doctor below and the current date is Date: ${startDate} please write a note for ${fullName}, a patient who needs to take time off for a fever. The patient has been experiencing related syntoms such as Sweating.                 Chills and shivering.                 Headache.                 Muscle aches.                 Loss of appetite.                 Irritability.                 Dehydration.                 General weakness.                                 and requires ${amountOfDays} days off starting from ${startDate} for rest and recovery. Please write a professional doctor's note, explaining the nature of the illness and the recommended time off. Please provide a very big signature in the font "Cedarville Cursive". Please only use "Cedarville Cursive" for the signature.                                  Doctor: Dr. Emily Patel                                 Internal Medicine Specialist                                 Evergreen Medical Associates                                 789 Oak Avenue                                 San Francisco, CA 94102                                 Phone: (415) 555-6789                                 Email: dr.patelm@example.com                  Please format in html, generate div tag, no body or html tag. Please turn the following css into inline styling and add it to the relevant elements:  """"css
         .doctors-note {
@@ -67,7 +67,7 @@ const openai = new OpenAI({
         try{
             const completion = await openai.chat.completions.create({
                 messages: [{ role: 'user', content: prompt}],
-                model: 'gpt-4',
+                model: gptModel,
             });
 
             return(completion.choices[0].message.content)

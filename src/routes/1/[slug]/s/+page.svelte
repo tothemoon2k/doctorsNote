@@ -42,12 +42,12 @@
 
 <svelte:head>
     <!-- Event snippet for Purchase conversion page -->
-    <script>
-        gtag('event', 'conversion', {
-            'send_to': 'AW-11319865819/pU6pCKCwl9sYENvj3ZUq',
-            'transaction_id': ''
-        });
-    </script>
+<script>
+    gtag('event', 'conversion', {
+        'send_to': 'AW-11319865819/pU6pCKCwl9sYENvj3ZUq',
+        'transaction_id': ''
+    });
+  </script>
   
 </svelte:head>
 

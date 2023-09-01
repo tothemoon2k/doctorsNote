@@ -106,27 +106,18 @@
         <div class="items-center lg:items-start flex flex-col flex-wrap w-full lg:w-1/2 pt-10 lg:pt-40">
             <div class="lg:mx-14">
                 <h1 class="mt-6 mb-4 font-extrabold text-black text-4xl text-center md:text-start md:text-5xl lg:text-7xl">Congrats 🎉</h1>
-                <h1 class="text-xl md:mx-0 md:text-2xl text-center md:text-start lg:text-3xl font-semibold leading-none tracking-tight text-gray-600">Your note ready to be purchased</h1>
+                <h1 class="text-xl md:mx-0 md:text-2xl text-center md:text-start lg:text-3xl font-semibold leading-none tracking-tight text-gray-600">Get your doctor's note below</h1>
             </div>
+
             <div class="flex md:mt-6 mx-12">    
-                <button class="mt-8 relative inline-flex items-center justify-center px-3 md:px-5 py-3 max-h-12 md:max-h-14 overflow-hidden font-bold text-white rounded-md shadow-2xl group"  on:click={checkout}>
-                    <span class="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-0 bg-gradient-to-br from-pink-600 via-purple-700 to-blue-400 group-hover:opacity-100"></span>
-                    <!-- Top glass gradient -->
-                    <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
-                    <!-- Bottom gradient -->
-                    <span class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
-                    <!-- Left gradient -->
-                    <span class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
-                    <!-- Right gradient -->
-                    <span class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
-                    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
-                    <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
-                    <span class="relative flex gap-1.5 items-center justify-center">Purchase for $1.99<img class="w-5 h-5" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/bank-card-front-side--v2.png" alt="download icon"></span>
+                <button on:click={checkout} class="mt-8 inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-green-600">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="relative">Purchase</span>
                 </button>
             </div>
         </div>
 
-        <div class="flex justify-center items-center w-full lg:w-1/2 h-screen con">
+        <div class="select-none flex justify-center items-center w-full lg:w-1/2 h-screen con">
             
             <!--Where doctors note goes-->
         </div>

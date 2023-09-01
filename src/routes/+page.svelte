@@ -89,7 +89,7 @@
                     </div>
                     </div>
                     
-                <h1 class="md:ml-10 text-4xl font-bold tracking-tight text-gray-800 md:text-6xl">Create a verifiable doctor's note in under 60 seconds for only $4.99</h1>
+                <h1 class="md:ml-10 text-4xl font-bold tracking-tight text-gray-800 md:text-6xl">Create a verifiable doctor's note in <span>under 60 seconds</span> for only $4.99</h1>
                 <p class="md:ml-10 helper mt-6 text-2xl leading-8 text-gray-700">No doctor’s visit required. Get yours below!</p>
 
                 
@@ -244,6 +244,8 @@
     .seasalt{
         background: rgb(226, 226, 226);
     }
+
+    
 
     .niceRound{
         border-bottom-left-radius: 3rem 3rem;

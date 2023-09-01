@@ -90,7 +90,7 @@
                     </div>
                     
                 <h1 class="md:ml-10 text-4xl font-bold tracking-tight text-gray-800 md:text-6xl">Create a verifiable doctor's note in under 60 seconds for only $4.99</h1>
-                <p class="md:ml-10 helper mt-6 text-2xl leading-8 text-gray-700">No doctor’s visit or insurance required. Get yours below!</p>
+                <p class="md:ml-10 helper mt-6 text-2xl leading-8 text-gray-700">No doctor’s visit required. Get yours below!</p>
 
                 
             </div>

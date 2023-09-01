@@ -40,7 +40,16 @@
 
 </script>
 
-
+<svelte:head>
+    <!-- Event snippet for Purchase conversion page -->
+    <script>
+        gtag('event', 'conversion', {
+            'send_to': 'AW-11319865819/pU6pCKCwl9sYENvj3ZUq',
+            'transaction_id': ''
+        });
+    </script>
+  
+</svelte:head>
 
 <img src={Test2} class="absolute w-full h-full -z-10 rounded-b-2xl opacity-80" alt="">
     <div class="flex w-screen h-screen flex-wrap overflow-auto">

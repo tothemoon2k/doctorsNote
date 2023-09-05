@@ -106,7 +106,7 @@
         <div class="items-center lg:items-start flex flex-col flex-wrap w-full lg:w-1/2 pt-10 lg:pt-40">
             <div class="lg:mx-14">
                 <h1 class="mt-6 mb-4 font-extrabold text-black text-4xl text-center md:text-start md:text-5xl lg:text-7xl">Your Doctor's Note is Ready🎉</h1>
-                <h1 class="text-xl md:mx-0 md:text-2xl text-center md:text-start lg:text-3xl font-semibold leading-none tracking-tight text-gray-600">Download and share your note below</h1>
+                <h1 class="text-xl md:mx-0 md:text-2xl text-center md:text-start lg:text-3xl font-semibold leading-none tracking-tight text-gray-600">Get Access and Share Your Note Below</h1>
             </div>
 
             <div class="flex md:mt-6 mx-12">    

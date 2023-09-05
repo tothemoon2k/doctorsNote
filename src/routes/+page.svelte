@@ -104,13 +104,13 @@
             <div class="box shadow-2xl bg-white w-5/6 max-w-6xl h-fit rounded-2xl absolute transform bottom-0 translate-y-1/3 md:translate-y-1/2 flex flex-col pt-4 pb-14 px-4">
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-3">Create your doctor's note in seconds</h1>
                 <div class="mb-3">
-                    <label for="fullName" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
+                    <label for="fullName" class="block text-sm font-medium leading-6 text-gray-900">What is your full name?</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
                         <input type="text" name="fullName" id="fullName" class="block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ferris Bueller" bind:value={fullName}>
                     </div>
                 </div>
 
-                <label for="amountOfDays" class="block text-sm font-medium leading-6 text-gray-900">Amount of Days</label>
+                <label for="amountOfDays" class="block text-sm font-medium leading-6 text-gray-900">How many days off would you like?</label>
                 <div class="relative mt-2 rounded-md shadow-sm">
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <span><img class="w-5 h-5" src="https://img.icons8.com/pastel-glyph/64/overtime--v3.png" alt="overtime--v3" ></span>
@@ -119,7 +119,7 @@
                 </div>
 
 
-                <button class="absolute bottom-0 bg-black text-white transform translate-y-1/2 p-4 rounded-xl mr-20 self-end font-semibold" on:click={next}>Next</button>
+                <button class="absolute bottom-0 bg-black text-white transform translate-y-1/2 p-4 rounded-xl mr-20 self-end font-semibold" on:click={next}>Get Your Doctor's Note</button>
             </div>
 
             
@@ -151,7 +151,7 @@
             <h1 class="mx-8 md:mx-0 mt-6 mb-8 md:mt-0 md:mb-10 text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Create Your Doctors Note</h1>
             <div class="w-5/6 md:w-3/4 lg:w-1/2 flex flex-col justify-end">
                 <div class="mb-3">
-                    <label for="startDate" class="block text-sm font-medium leading-6 text-gray-900">Start Date</label>
+                    <label for="startDate" class="block text-sm font-medium leading-6 text-gray-900">When would you like the note to start?</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
                     <input type="date" name="startDate" id="startDate" class="block w-full rounded-md border-0 py-3 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" placeholder="" bind:value={startDate}>
                     </div>
@@ -177,7 +177,7 @@
                 </div>-->
 
                 <div class="mb-6 md:mb-3">
-                    <label for="additionalDetails" class="block text-sm font-medium leading-6 text-gray-900">Additional Details (Optional)</label>
+                    <label for="additionalDetails" class="block text-sm font-medium leading-6 text-gray-900">Would you like to add any additional details? (Optional)</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
                         <input type="text" name="additionalDetails" id="additionalDetails" class="block w-full rounded-md border-0 pt-3 pb-16 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" placeholder="" bind:value={additionalDetails}>
                     </div>

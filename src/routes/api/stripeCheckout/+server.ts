@@ -14,7 +14,7 @@ export const POST: RequestHandler = async ({request}) => {
     
 
     const session = await stripe.checkout.sessions.create({
-        line_items: [{price: "price_1NlfdbEe5blDhv50FnJ6Jz4K", quantity: 1}],
+        line_items: [{price: "price_1Nn6ptEe5blDhv50FjRNtaf2", quantity: 1}],
         mode: 'payment',
         success_url: `https://www.getadoctorsnote.org/1/${data.noteUid}/s`,
         cancel_url: `https://www.getadoctorsnote.org/1/${data.noteUid}`,

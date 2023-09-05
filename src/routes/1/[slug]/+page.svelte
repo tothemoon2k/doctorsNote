@@ -105,14 +105,14 @@
     <div class="w-screen mainH flex flex-col lg:flex-row">
         <div class="items-center lg:items-start flex flex-col flex-wrap w-full lg:w-1/2 pt-10 lg:pt-40">
             <div class="lg:mx-14">
-                <h1 class="mt-6 mb-4 font-extrabold text-black text-4xl text-center md:text-start md:text-5xl lg:text-7xl">Congrats 🎉</h1>
-                <h1 class="text-xl md:mx-0 md:text-2xl text-center md:text-start lg:text-3xl font-semibold leading-none tracking-tight text-gray-600">Get your doctor's note below</h1>
+                <h1 class="mt-6 mb-4 font-extrabold text-black text-4xl text-center md:text-start md:text-5xl lg:text-7xl">Your Doctor's Note is Ready🎉</h1>
+                <h1 class="text-xl md:mx-0 md:text-2xl text-center md:text-start lg:text-3xl font-semibold leading-none tracking-tight text-gray-600">Download and share your note below</h1>
             </div>
 
             <div class="flex md:mt-6 mx-12">    
                 <button on:click={checkout} class="mt-8 inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-green-600">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <span class="relative">Purchase</span>
+                    <span class="relative">Download Now</span>
                 </button>
             </div>
         </div>
